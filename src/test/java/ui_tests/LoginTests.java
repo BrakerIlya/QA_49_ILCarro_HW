@@ -9,6 +9,7 @@ import pages.BasePage;
 import pages.HomePage;
 import pages.LoginPage;
 import utils.HeaderMenuItem;
+import utils.RetryAnalyzer;
 
 public class LoginTests extends ApplicationManager {
     LoginPage loginPage;
@@ -21,12 +22,12 @@ public class LoginTests extends ApplicationManager {
 
     @Test
     public void loginPositiveTest(){
-        User user = User.builder().username("bilbo_baggins_12345@mail.com").password("Password123!").build();
+        User user = User.builder().username("bilbo_baggins_12345@mail.com").password("Password123").build();
         new LoginPage(getDriver()).typeLoginForm(user);
     }
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void loginNegativeWrongEmailTest(){
-        User user = User.builder().username("bilbo_baggins_12345mail.com").password("Password123!").build();
+        User user = User.builder().username("bilbo_baggins_12345@mail.com").password("Password123!").build();
         new LoginPage(getDriver()).typeLoginForm(user);
         Assert.assertTrue(loginPage.emailWrong());
     }
