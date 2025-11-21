@@ -18,10 +18,21 @@ public class LoginPage extends BasePage {
     WebElement inputPassword;
     @FindBy(xpath = "//button[@type=\"submit\"]")
     WebElement btnYalla;
+    @FindBy(xpath = "//div[text()=\"It'snot look like email\"]")
+    WebElement wrongEmail;
+    @FindBy(xpath = "//h1[text()=\"Login failed\"]")
+    WebElement divLoginFailed;
     public void typeLoginForm(User user){
         inputEmail.sendKeys(user.getUsername());
         inputPassword.sendKeys(user.getPassword());
         btnYalla.click();
     }
+    public boolean emailWrong(){
+        return elementIsPresent(wrongEmail);
+    }
+    public boolean loginFailedIsPresent(){
+        return elementIsPresent(divLoginFailed);
+    }
+
 
 }

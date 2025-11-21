@@ -10,8 +10,6 @@ import utils.HeaderMenuItem;
 
 import java.time.Duration;
 
-import static utils.HeaderMenuItem.*;
-
 
 public abstract class BasePage {
     @Setter
@@ -49,5 +47,11 @@ public abstract class BasePage {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+    public static boolean elementIsPresent(WebElement element){
+       return element.isDisplayed();
+    }
+    public static boolean elementIsEnabled(WebElement element){
+        return element.isEnabled();
     }
 }
