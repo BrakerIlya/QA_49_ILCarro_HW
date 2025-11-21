@@ -54,4 +54,8 @@ public abstract class BasePage {
     public static boolean elementIsEnabled(WebElement element){
         return element.isEnabled();
     }
+    void clickWait(WebElement element, int time){
+        new WebDriverWait(driver,Duration.ofSeconds(time))
+                .until(ExpectedConditions.elementToBeClickable(element)).click();
+    }
 }
