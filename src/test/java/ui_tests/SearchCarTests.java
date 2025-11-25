@@ -32,4 +32,12 @@ public class SearchCarTests extends ApplicationManager {
         Assert.assertTrue(homePage.cityISRequiredIsPresent());
 
     }
+    @Test
+    public void searchPositiveTestCalendar(){
+        String city="Haifa";
+        LocalDate dateFrom=LocalDate.of(2025,12,22);
+        LocalDate dateTo=LocalDate.of(2026,5,11);
+        homePage.typeSearchFormCalendar(city,dateFrom,dateTo);
+        Assert.assertTrue(homePage.urlContains("results",5));
+    }
 }

@@ -11,6 +11,8 @@ import pages.LoginPage;
 import utils.HeaderMenuItem;
 import utils.RetryAnalyzer;
 
+import java.lang.reflect.Method;
+
 public class LoginTests extends ApplicationManager {
     LoginPage loginPage;
     @BeforeMethod
@@ -21,8 +23,9 @@ public class LoginTests extends ApplicationManager {
     }
 
     @Test
-    public void loginPositiveTest(){
+    public void loginPositiveTest(Method method){
         User user = User.builder().username("bilbo_baggins_12345@mail.com").password("Password123").build();
+        logger.info("Start test"+ method.getName()+"With data" + user);
         new LoginPage(getDriver()).typeLoginForm(user);
     }
     @Test(retryAnalyzer = RetryAnalyzer.class)
